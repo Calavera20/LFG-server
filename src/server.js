@@ -166,7 +166,7 @@ const server = new ApolloServer({
 // server.applyMiddleware({ app });
 
 const PORT = process.env.PORT || 4000;
-httpServer.listen(PORT, () =>
+server.listen(PORT, () =>
   console.log(`Server is now running on http://localhost:${PORT}/graphql`)
 );
 }
