@@ -4,7 +4,10 @@
   "main": "server.js",
   "scripts": {
     "start": "babel-node ./server.js",
-    "serve": "babel-node ./server.js"
+    "serve": "babel-node ./server.js",
+    "build": "npm run clean && npm run build-babel",
+"build-babel": "./node_modules/.bin/babel -d ./build ./src",
+"clean": "rm -rf build && mkdir build"
   },
   "dependencies": {
     "apollo-server": "^3.6.1",
