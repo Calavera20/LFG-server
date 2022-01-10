@@ -82,10 +82,11 @@ const server = new GraphQLServer({ typeDefs, resolvers, context: req => ({
  , middlewares: [permissions] 
 });
 server.express.use(cors());
-const PORT = process.env.PORT || 4000;
-server.start(({ port:  PORT}) => {
+
+server.start(({ port }) => {
   console.log(`Server on http://localhost:${port}/`);
 });
+
 }
  startApolloServer();
 
