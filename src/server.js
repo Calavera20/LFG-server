@@ -91,7 +91,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: req => ({
-      ...req,
+      req,
       pubsub,
       token: getTokenData(req)
     })

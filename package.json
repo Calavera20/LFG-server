@@ -3,10 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-  "server": "nodemon server.js --exec babel-node", 
-  "heroku-postbuild": "npm install",
-  "start": "babel-node server.js"
+    "start": "nodemon src/index.js --exec babel-node",
+    "build": "babel src -d build"
   },
   "dependencies": {
     "apollo-server": "^3.6.1",
