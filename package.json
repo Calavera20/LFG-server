@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "babel-node ./server.js",
     "serve": "babel-node ./server.js",
     "build": "npm run clean && npm run build-babel",
-"build-babel": "./node_modules/.bin/babel -d ./build ./src",
+    "start": "npm run build && node ./build/index.js",
+    "build-babel": "babel -d ./build ./src -s",
 "clean": "rm -rf build && mkdir build"
   },
   "dependencies": {
