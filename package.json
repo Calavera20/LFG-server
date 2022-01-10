@@ -4,8 +4,7 @@
   "main": "server.js",
   "scripts": {
     "start": "babel-node src/server.js",
-    "build": "babel src -d build",
-    "heroku-postbuild": "npm install && npm run start"
+    "heroku-prebuild": "babel src -d build"
   },
   "dependencies": {
     "apollo-server": "^3.6.1",
