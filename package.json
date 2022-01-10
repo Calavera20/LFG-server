@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "babel-node src/server.js",
-    "heroku-prebuild": "npm install && babel src -d build"
+    "start": "nodemon src/index.js --exec babel-node",
+    "build": "babel src -d build"
   },
   "dependencies": {
     "apollo-server": "^3.6.1",
