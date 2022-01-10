@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon src/index.js --exec babel-node",
+    "start": "nodemon src/server.js --exec babel-node",
     "build": "babel src -d build"
   },
   "dependencies": {
@@ -24,6 +24,19 @@
     "@babel/node": "^7.16.7",
     "@babel/plugin-proposal-object-rest-spread": "^7.16.7",
     "@babel/preset-env": "^7.16.7",
-    "@babel/preset-es2016": "^7.0.0-beta.53"
+    "@babel/preset-es2016": "^7.0.0-beta.53",
+    "babel-preset-env": "^1.7.0"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "12.14.1"
+          }
+        }
+      ]
+    ]
   }
 }
