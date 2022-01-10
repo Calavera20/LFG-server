@@ -7,6 +7,7 @@
     "serve": "babel-node ./server.js"
   },
   "dependencies": {
+    "apollo-server": "^3.6.1",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "graphql-shield": "^7.5.0",

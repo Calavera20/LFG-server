@@ -18,6 +18,7 @@ import cors from 'cors';
 import * as jwt from 'jsonwebtoken'
 import { rule, shield} from "graphql-shield";
 const { GraphQLServer} = require("graphql-yoga");
+import {ApolloServer} from "apollo-server"
 
 async function startApolloServer() {
   await connectDB();
@@ -74,19 +75,31 @@ async function startApolloServer() {
       getUserData: isAuthorized
     }
   })
-const server = new GraphQLServer({ typeDefs, resolvers, context: req => ({
-  ...req,
-  pubsub,
-  token: getTokenData(req)
-})
- , middlewares: [permissions] 
-});
-server.express.use(cors());
+// const server = new GraphQLServer({ typeDefs, resolvers, context: req => ({
+//   ...req,
+//   pubsub,
+//   token: getTokenData(req)
+// })
+//  , middlewares: [permissions] 
+// });
+// server.express.use(cors());
 
-server.start(({ port }) => {
-  console.log(`Server on http://localhost:${port}/`);
+// server.start(({ port }) => {
+//   console.log(`Server on http://localhost:${port}/`);
+// });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: req => ({
+      ...req,
+      pubsub,
+      token: getTokenData(req)
+    })
 });
+const PORT = process.env.PORT || 4000;
 
+return server.listen({ port: PORT });
+ 
 }
  startApolloServer();
 
