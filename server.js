@@ -82,8 +82,8 @@ const server = new GraphQLServer({ typeDefs, resolvers, context: req => ({
  , middlewares: [permissions] 
 });
 server.express.use(cors());
-
-server.start(({ port }) => {
+const PORT = process.env.PORT || 4000;
+server.start(({ port:  PORT}) => {
   console.log(`Server on http://localhost:${port}/`);
 });
 }
