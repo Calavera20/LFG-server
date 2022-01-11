@@ -81,18 +81,25 @@ async function startApolloServer() {
       getUserData: isAuthorized
     }
   })
-// const server = new GraphQLServer({ typeDefs, resolvers, context: req => ({
-//   ...req,
-//   pubsub,
-//   token: getTokenData(req)
-// })
-//  , middlewares: [permissions] 
-// });
-// server.express.use(cors());
 
-// server.start(({ port }) => {
-//   console.log(`Server on http://localhost:${port}/`);
-// // });
+
+const PORT = process.env.PORT || 4020;
+const opts = {
+  port: PORT
+}
+const server = new GraphQLServer({ typeDefs, resolvers,
+   context: req => ({
+  ...req,
+  pubsub,
+  token: getTokenData(req)
+})
+ , middlewares: [permissions] 
+});
+server.express.use(cors());
+
+server.start(opts,({ port }) => {
+  console.log(`Server on http://localhost:${port}/`);
+});
 // const schema = makeExecutableSchema({ typeDefs, resolvers });
 // const app = express();
 // const httpServer = createServer(app);
@@ -131,44 +138,44 @@ async function startApolloServer() {
 // const PORT = process.env.PORT || 4000;
 // server
 // return server.listen({ port: PORT });
-const app = express();
+// const app = express();
 
-const httpServer = createServer(app);
+// const httpServer = createServer(app);
 
-const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers,
-});
+// const schema = makeExecutableSchema({
+//   typeDefs,
+//   resolvers,
+// });
 
-const subscriptionServer = SubscriptionServer.create(
-  { schema, execute, subscribe },
-  { server: httpServer, path: '/graphql' }
-);
+// const subscriptionServer = SubscriptionServer.create(
+//   { schema, execute, subscribe },
+//   { server: httpServer, path: '/graphql' }
+// );
 
-const server = new ApolloServer({
-  schema,
-  context: req => ({
-          req,
-          pubsub,
-          token: getTokenData(req)
-        }),
-  plugins: [{
-    async serverWillStart() {
-      return {
-        async drainServer() {
-          subscriptionServer.close();
-        }
-      };
-    }
-  }],
-});
-// // await server.start();
-// server.applyMiddleware({ app });
+// const server = new ApolloServer({
+//   schema,
+//   context: req => ({
+//           req,
+//           pubsub,
+//           token: getTokenData(req)
+//         }),
+//   plugins: [{
+//     async serverWillStart() {
+//       return {
+//         async drainServer() {
+//           subscriptionServer.close();
+//         }
+//       };
+//     }
+//   }],
+// });
+// // // await server.start();
+// // server.applyMiddleware({ app });
 
-const PORT = process.env.PORT || 4000;
-server.listen(PORT, () =>
-  console.log(`Server is now running on http://localhost:${PORT}/graphql`)
-);
+// const PORT = process.env.PORT || 4000;
+// server.listen(PORT, () =>
+//   console.log(`Server is now running on http://localhost:${PORT}/graphql`)
+// );
 }
  startApolloServer();
 
