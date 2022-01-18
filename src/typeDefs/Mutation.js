@@ -12,7 +12,7 @@ export const typeDefs = `
     sendMessage(content: String!, creator: String!, creationDate: String!): String
     friendInvite(userData: InputFriend, inviteeData: InputFriend): String
     acceptFriendInvite(userData: InputFriend, inviteeData: InputFriend): String
-    emailInvite(userData: InputFriend, inviteeData: InputFriend): String
+    emailInvite(userData: InputFriend, inviteeData: InputFriend, message: String): String
     addMessage(message: MessageInput): Message
     addDecision(decision: DecisionChangeInput): DecisionChange
     addGroupPermissionChange(change: PermissionChangeInput): PermissionChange

@@ -122,16 +122,20 @@ export const resolvers = {
       })})}
     );
   },
-  emailInvite: async (parent,  { userData, inviteeData }) =>{
+  emailInvite: async (parent,  { userData, inviteeData, message }) =>{
 
     const output = `
-    <p>You have a new contact request</p>
+    <h1>You have a new invitation from your friend on LFG</h1>
     <h3>Contact Details</h3>
     <ul>  
-      ${userData}
+      ${userData.username}
     </ul>
-    <h3>Message</h3>
-    <p>${inviteeData}</p>
+      <h3>Message</h3>
+	  <ul> 
+      <p>Hello ${inviteeData.username},<br>
+        ${message}
+      </p>
+    </ul> 
   `;
 
   let transporter = nodemailer.createTransport({
