@@ -3,9 +3,6 @@ import jwt from "jsonwebtoken";
 import { UserModel as User } from "../schemas/User";
 import {pubsub} from "../resolvers/Subscription";
 import { GroupModel as Group } from "../schemas/Group";
-// import {ChatModel as Chat } from "../schemas/Chat"
-// import { UserInputError } from "apollo-server-express";
-import AuthPayload from "../classes/authPayload";
 import { FriendsListModel as FriendsList } from "../schemas/FriendsList";
 
 const nodemailer = require('nodemailer');
