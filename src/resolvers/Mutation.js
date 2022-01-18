@@ -29,13 +29,11 @@ export const resolvers = {
       }
     );
 
-//dodaj sprawdzanie emaila
 
     if (res == username) {
       return res;
     } else {
       if (res == 11000) return res
-      // new UserInputError("username is not available");
     }
   },
   login: async (parent, { username, password }) => {
@@ -126,9 +124,9 @@ export const resolvers = {
 
     const output = `
     <h1>You have a new invitation from your friend on LFG</h1>
-    <h3>Contact Details</h3>
+    <h3>Friend Details</h3>
     <ul>  
-      ${userData.username}
+      Username: ${userData.username}
     </ul>
       <h3>Message</h3>
 	  <ul> 
@@ -156,7 +154,7 @@ export const resolvers = {
       from: '"Nodemailer Contact" <spencer.kemmer38@ethereal.email>',
       to: `${inviteeData.email}`, 
       subject: 'LFG invitation', 
-      text: 'Hello world?', 
+      text: 'Unable to see HTML message? You received invitation from ${userData.username}, please head to LFG get in contact with them.', 
       html: output 
   };
 
@@ -170,14 +168,12 @@ export const resolvers = {
     
   },
   addMessage: (root, { message }) => {
-    console.log(message)
     const newMessage = { text: message.text, creator: message.creator, creationDate: message.creationDate, channelId: message.channelId };
     pubsub.publish('messageAdded', { messageAdded: newMessage, channelId: message.channelId });  
     return newMessage;
   },
 
   addDecision: (root, {decision}) => {
-    console.log(decision)
     const newDecision = {data: decision.data, groupId: decision.groupId};
     pubsub.publish('requestAdded', { requestAdded: newDecision, groupId: decision.groupId});  
     console.log(newDecision)
@@ -185,7 +181,6 @@ export const resolvers = {
   },
   
   addGroupPermissionChange: (root, {change}) => {
-    console.log(change)
     const newPermission = change;
     pubsub.publish('groupPermissionChanged', {  groupPermissionChanged: newPermission , groupId: change.groupId});  
     return newPermission;
