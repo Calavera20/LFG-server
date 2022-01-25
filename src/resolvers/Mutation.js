@@ -100,11 +100,13 @@ export const resolvers = {
   },
   friendInvite: async  (parent, { userData, inviteeData}) =>{
     await FriendsList.updateOne({userId: userData.userId}, {$push: {invited: inviteeData}}).then(
-      async () => {
-        await FriendsList.updateOne({userId: inviteeData.userId}, {$push: {pending: userData}})
+      async (e) => {
+        await FriendsList.updateOne({userId: inviteeData.userId}, {$push: {pending: userData}}).catch(e => {
+          return e;
+        })
       }
     );
-
+      return "success";
   },
   acceptFriendInvite: async  (parent, { userData, inviteeData }) =>{
     await FriendsList.updateOne({userId: userData.userId}, {$pull: {pending: {userId: inviteeData.userId}}}).then( 

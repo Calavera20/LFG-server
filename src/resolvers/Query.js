@@ -64,4 +64,13 @@ export const resolvers = {
     );
     return res;
   },
+  checkIfUsernameExists: async (parent, { username }) => {
+    let res;
+    await User.findOne({username: username}).then(
+      (data) => {
+        res = data;
+      }
+    );
+    return res;
+  }
 };
