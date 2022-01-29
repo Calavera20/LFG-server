@@ -5,4 +5,4 @@
 JWTSecret = process.env.JWT_SECRET;
 
 //token połączenia z bazą MongoDB
-MongooseUri = process.env.JWT_SECRET;
+MongooseUri = process.env.MongooseURI;
