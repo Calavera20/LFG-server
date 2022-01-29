@@ -11,20 +11,13 @@ import { typeDefs as MessageDefs } from "./typeDefs/Message";
 import { typeDefs as SubscriptionDefs } from "./typeDefs/Subscription";
 import { resolvers as Mutation } from "./resolvers/Mutation";
 import { resolvers as Query } from "./resolvers/Query";
-import { createServer } from 'http';
 import { resolvers as Subscription, pubsub } from "./resolvers/Subscription";
 import { connectDB, db } from "./dbConnector";
 import { isNull } from "lodash";
-
-import { execute, subscribe } from 'graphql';
-import express from "express"
-import { SubscriptionServer } from 'subscriptions-transport-ws';
 import cors from 'cors';
 import * as jwt from 'jsonwebtoken'
 import { rule, shield} from "graphql-shield";
-import { makeExecutableSchema } from '@graphql-tools/schema';
 const { GraphQLServer} = require("graphql-yoga");
-import {ApolloServer} from "apollo-server"
 
 async function startApolloServer() {
   await connectDB();
@@ -49,7 +42,7 @@ async function startApolloServer() {
   function getTokenData(req) {
     let tokenData;
     if(req && req.request && req.request.headers.authorization && req.request.headers.authorization.substring(7) != "null") {
-        tokenData = jwt.verify(req.request.headers.authorization.substring(7), "secret");
+        tokenData = jwt.verify(req.request.headers.authorization.substring(7), process.env.JWT_SECRET);
     } else {
         return null;
     }

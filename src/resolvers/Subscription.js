@@ -1,7 +1,4 @@
 import { PubSub, withFilter } from "graphql-subscriptions";
-const onMessagesUpdates = (fn) => subscribers.push(fn);
-const messages = [];
-const subscribers = [];
 export const pubsub = new PubSub();
 export const resolvers = {
  

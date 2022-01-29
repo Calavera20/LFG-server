@@ -1,7 +1,7 @@
-//LFG
-//aUqBCD4_!_k2vPw
+
 import mongoose from "mongoose"
-const uri = "mongodb+srv://LFG:aUqBCD4_!_k2vPw@cluster0.f0liw.mongodb.net/LFG_App?retryWrites=true&w=majority";
+//adres dostępu do bazy danych - lokalizacja: konfiguracja Heroku
+const uri = process.env.MongooseURI;
     
 
 export const connectDB = async () => {

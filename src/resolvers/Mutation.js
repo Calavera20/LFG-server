@@ -13,7 +13,6 @@ export const resolvers = {
     let res;
     await new User({ username: username, email: email, password: hash }).save().then(
       async (user) => {
-        console.log(username)
         res = username;
         await new FriendsList({userId: user.id}).save().then(()=>{},
         (err)=>{
@@ -21,7 +20,6 @@ export const resolvers = {
         })
       },
       (err) => {
-        console.log(err)
         res = err.code;
       }
     );
@@ -30,7 +28,7 @@ export const resolvers = {
     if (res == username) {
       return res;
     } else {
-      if (res == 11000) return res
+      if (res == 11000) return res;
     }
   },
   login: async (parent, { username, password }) => {
@@ -43,7 +41,7 @@ export const resolvers = {
 
           const accessToken = jwt.sign(
             { id: user.id, email: user.email },
-            "secret",
+            process.env.JWT_SECRET,
             { expiresIn: '1d' }
           )
 
