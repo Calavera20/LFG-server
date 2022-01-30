@@ -134,24 +134,23 @@ export const resolvers = {
   `;
 
   let transporter = nodemailer.createTransport({
-    name: 'spencer.kemmer38@ethereal.email',
-    host: 'smtp.ethereal.email',
-    port: 587,
-    secure: false,
-    auth: {
-        user: 'spencer.kemmer38@ethereal.email',
-        pass: 'RHjZwje2PGJ62zWXXG'
-    },
-    tls:{
-      rejectUnauthorized:false
-    }
+    service: 'gmail',
+	auth: {
+        type: 'OAuth2',
+        user: process.env.MAIL_USERNAME,
+        pass: process.env.MAIL_PASSWORD,
+        clientId: process.env.OAUTH_CLIENTID,
+        clientSecret: process.env.OAUTH_CLIENT_SECRET,
+        refreshToken: process.env.OAUTH_REFRESH_TOKEN
+      }
   });
 
   let mailOptions = {
-      from: '"Nodemailer Contact" <spencer.kemmer38@ethereal.email>',
-      to: `${inviteeData.email}`, 
-      subject: 'LFG invitation', 
-      text: 'Unable to see HTML message? You received invitation from ${userData.username}, please head to LFG get in contact with them.', 
+      from: 'jakub.remiszewski1024@gmail.com',
+      //to: `${inviteeData.email}`, 
+		to: 'jakub.remiszewski1024@gmail.com',
+	  subject: 'LFG invitation', 
+      text: `Unable to see HTML message? You received invitation from ${userData.username}, please head to LFG get in contact with them.`, 
       html: output 
   };
 
