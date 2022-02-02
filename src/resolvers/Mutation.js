@@ -10,7 +10,7 @@ const nodemailer = require('nodemailer');
 export const resolvers = {
 	signup: async (parent, { username, email, password }) => {
 		const hash = await bcrypt.hash(password, 10);
-    const notFoundErrCode=11000;
+		const alreadyExistsErrCode = 11000;
 		let res;
 		await new User({ username: username, email: email, password: hash })
 			.save()
@@ -32,7 +32,7 @@ export const resolvers = {
 		if (res == username) {
 			return res;
 		} else {
-			if (res == notFoundErrCode) return res;
+			if (res == alreadyExistsErrCode) return res;
 		}
 	},
 	login: async (parent, { username, password }) => {
@@ -40,7 +40,7 @@ export const resolvers = {
 		await User.findOne({ username: username }).then(
 			async (user) => {
 				result.user = user;
-        const expirationTime = '1d';
+				const expirationTime = '1d';
 				const match = await bcrypt.compare(password, user.password);
 				if (match) {
 					const accessToken = jwt.sign(
@@ -116,7 +116,7 @@ export const resolvers = {
 		);
 	},
 	friendInvite: async (parent, { userData, inviteeData }) => {
-    const successRespone = 'success';
+		const successRespone = 'success';
 		await FriendsList.updateOne(
 			{ userId: userData.userId },
 			{ $push: { invited: inviteeData } }

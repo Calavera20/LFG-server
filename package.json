@@ -4,7 +4,8 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon src/server.js --exec babel-node",
-    "build": "babel src -d build"
+    "build": "babel src -d build",
+    "test": "jest"
   },
   "dependencies": {
     "apollo-server": "^3.6.1",
@@ -25,7 +26,9 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.16.7",
     "@babel/preset-env": "^7.16.7",
     "@babel/preset-es2016": "^7.0.0-beta.53",
-    "babel-preset-env": "^1.7.0"
+    "apollo-server-testing": "^2.25.3",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^27.4.7"
   },
   "babel": {
     "presets": [
