@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+//definicja schematu dokumentu FriendsListModel
 var Schema = mongoose.Schema;
 
 var friendSchema = new Schema(

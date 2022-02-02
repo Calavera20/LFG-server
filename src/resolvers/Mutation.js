@@ -7,6 +7,7 @@ import { FriendsListModel as FriendsList } from '../schemas/FriendsList';
 
 const nodemailer = require('nodemailer');
 
+//definicja metod obsługujących zapytania typu Mutation
 export const resolvers = {
 	signup: async (parent, { username, email, password }) => {
 		const hash = await bcrypt.hash(password, 10);

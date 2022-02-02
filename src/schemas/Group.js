@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+//definicja schematu dokumentu GroupModel
 var Schema = mongoose.Schema;
 
 var GroupModelSchema = new Schema({

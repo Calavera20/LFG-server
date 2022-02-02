@@ -1,5 +1,7 @@
 var mongoose = require("mongoose");
 
+
+//definicja schematu dokumentu UserModel
 var Schema = mongoose.Schema;
 
 var UserModelSchema = new Schema({

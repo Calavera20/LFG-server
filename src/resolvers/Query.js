@@ -5,6 +5,7 @@ import { FriendsListModel as FriendsList } from '../schemas/FriendsList';
 
 import { UserModel as User } from '../schemas/User';
 
+//definicja metod obsługujących zapytania typu Query
 export const resolvers = {
 	getGameCards: async () => {
 		let res;
