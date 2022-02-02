@@ -1,10 +1,18 @@
-Komendy należy wywołać w folderze `server`
+# Wymagane narzędzia:
+
+Node.js w wersji co najmniej 16.13.2 oraz NPM w
+wersji co najmniej 8.1.2
 
 # Przed uruchomieniem aplikacji
-  `npm i`
-  
+
+`npm i`
+
+`npm run build`
+
 # Uruchomienie aplikacji
-  `npm start`
-  
+
+`node ./build/server.js`
+
 # Po uruchomieniu
-  playground zapytań do serwera dostepny `http://localhost:4000`
+
+playground zapytań do serwera dostepny `http://localhost:4020`
